@@ -75,7 +75,7 @@
   - [Cómo habilitar HTTPS en nuestro servidor](#cómo-habilitar-https-en-nuestro-servidor)
 - [Como implementar una capa de manejo de caché en express](#como-implementar-una-capa-de-manejo-de-caché-en-express)
 - [¿Cómo contener tu aplicación en Docker?](#cómo-contener-tu-aplicación-en-docker)
-- [Despliegue en now](#despliegue-en-now)
+- [Despliegue en vercel](#despliegue-en-vercel)
 
 ## ¿Qué es Node.js y para que sirve?
 
@@ -2882,29 +2882,29 @@ Si el contenedor les corre, pero no pueden acceder a la api mediante ``http://lo
   <small><a href="#tabla-de-contenido">🡡 volver al inicio</a></small>
 </div>
 
-## Despliegue en now
+## Despliegue en vercel
 
-En está sección aprenderas a como desplegar tu aplicación en un servicio llamado now. [now]() es un servicio serverless es decir no tenemos que preocuparnos en infraestructura, ya que a media que tu aplicación tiene cierta demanda, now se encarga de escalar la aplicación por nosotros.
+En está sección aprenderas a como desplegar tu aplicación en un servicio llamado vercel. [vercel]() es un servicio serverless es decir no tenemos que preocuparnos en infraestructura, ya que a media que tu aplicación tiene cierta demanda, vercel se encarga de escalar la aplicación por nosotros.
 
-Para hacer uso del servicio de now debemos ir a:
+Para hacer uso del servicio de vercel debemos ir a:
 https://zeit.co/download
 
 Los más recomedable es descargar la aplicación de escritorio pues no solo nos muestra un menú donde podemos ver el status de nuestras descargas, sino que también nos descarga una utilidad de terminal.
 
-La descarga es muy fácil pues NOW CLI se descarga usando ``npm`` o ``yarn``.
-con npm ``npm i -g now``
-con yarn ``yarn global add now``
+La descarga es muy fácil pues Vercel CLI se descarga usando ``npm`` o ``yarn``.
+con npm ``npm i -g vercel``
+con yarn ``yarn global add vercel``
 
 Ahora lo primero que tenemos que hacer es considerar nuestras variables de entorno, pues si instalamos nuestra aplicación si pasarselas al despliegue no van a tener ningún valor, lo que vamos a hacer es que las vamos a sacar de el archivo ``.env``.
 
-La manera en como now nos permite administrar nuestras variables de entorno, es mediante algó llamado secrets, ``un secret lo que hace es guardar nuestra variable de entorno y nunca más nos deja acceder a ese resultado``, así podemos cuidarnos de que nadie venga nuestra máquina y nos saque el valor de la variable de entorno, la manera en como se hace es con ``now secret add nombreVariableEntorno``, y así sucesivamente con todas nuestras variables de entorno.
+La manera en como now nos permite administrar nuestras variables de entorno, es mediante algó llamado secrets, ``un secret lo que hace es guardar nuestra variable de entorno y nunca más nos deja acceder a ese resultado``, así podemos cuidarnos de que nadie venga nuestra máquina y nos saque el valor de la variable de entorno, la manera en como se hace es con ``vercel secret add nombreVariableEntorno``, y así sucesivamente con todas nuestras variables de entorno.
 
-El archivo ``now.json`` que usaremos para el despliegue quedaría de la siguiente manera:
+El archivo ``vercel.json`` que usaremos para el despliegue quedaría de la siguiente manera:
 ```json
 {
   "name": "platzivideo",
   "version": "2",
-  "builds": [{"src": "index.js", "use": "@now/node"}],
+  "builds": [{"src": "index.js", "use": "@vercel/node"}],
   "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
   "env": {
     "DB_USER": "@platzivideos-db-user",
@@ -2915,7 +2915,7 @@ El archivo ``now.json`` que usaremos para el despliegue quedaría de la siguient
 }
 ```
 
-Si al desplegar nuestra aplicación con now dev nos muestra un error cuando se conecta a la base de datos de mongo como:
+Si al desplegar nuestra aplicación con vercel dev nos muestra un error cuando se conecta a la base de datos de mongo como:
 
 ``
 (node:414) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
@@ -2934,7 +2934,7 @@ constructor() {
   <small><a href="#tabla-de-contenido">🡡 volver al inicio</a></small>
 </div>
 <br>
-Una vez hecho esto, podemos probar nuestra servidor usando now dev, para que lo ejecute de manera local, y escribimos solo now para enviar el servicio a producción, y cada vez que hallá cambios, solo volvemos a hacer now al proyecto.
+Una vez hecho esto, podemos probar nuestra servidor usando vercel dev, para que lo ejecute de manera local, y escribimos solo vercel para enviar el servicio a producción, y cada vez que hallá cambios, solo volvemos a hacer vercel al proyecto.
 <br>
 <br>
 <p align="center" style="font-style: italic;">by: Jasan Hernández :D</p>
